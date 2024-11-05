@@ -1,0 +1,9 @@
+duel:
+  allowedCommands:
+    - 'msg'
+    - 'help'
+  messages:
+    duelEndLoser: "1"
+    duelEndWinner: "2"
+  teleportDelay: 4
+  spawnLocation: "Duels,0,64,0"

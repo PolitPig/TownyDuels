@@ -1,0 +1,12 @@
+org\politpig\townyDuels\command\ArenaCreateCommand.class
+org\politpig\townyDuels\Obj.class
+org\politpig\townyDuels\manager\KitManager.class
+org\politpig\townyDuels\manager\QueueManager.class
+org\politpig\townyDuels\command\CreateKitCommand.class
+org\politpig\townyDuels\TownyDuels.class
+org\politpig\townyDuels\data\ArenaData.class
+org\politpig\townyDuels\command\QueueCommand.class
+org\politpig\townyDuels\manager\ArenaManager.class
+org\politpig\townyDuels\listener\Listener.class
+org\politpig\townyDuels\manager\DuelManager.class
+org\politpig\townyDuels\data\KitData.class

@@ -1,0 +1,11 @@
+name: TownyDuels
+version: '1.0-SNAPSHOT'
+main: org.politpig.townyDuels.TownyDuels
+api-version: '1.20'
+commands:
+  createkit:
+    usage: /<1>
+  queuea:
+    usage: /<1>
+  arenacreate:
+    usage: /<1>
