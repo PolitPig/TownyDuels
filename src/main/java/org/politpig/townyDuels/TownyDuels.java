@@ -40,4 +40,6 @@ public final class TownyDuels extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new Listener(queuemanager, obj, arenaManager, duelManager), this);
     }
+    /*Допишу плагин ливну со сквада
+    Спасибо нагито что втянул меня в програмирование*/
 }
