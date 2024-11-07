@@ -1,6 +1,7 @@
 package org.politpig.townyDuels;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.politpig.townyDuels.command.ArenaCreateCommand;
 import org.politpig.townyDuels.command.CreateKitCommand;
@@ -32,7 +33,7 @@ public final class TownyDuels extends JavaPlugin {
         kitManager = new KitManager(this);
         arenaManager = new ArenaManager(this);
         duelManager = new DuelManager(duelManager, obj);
-        queuemanager = new QueueManager(arenaManager, kitManager);
+        queuemanager = new QueueManager(arenaManager, kitManager, duelManager);
 
         getCommand("queuea").setExecutor(new QueueCommand(arenaManager, kitManager, queuemanager, duelManager));
         getCommand("createkit").setExecutor(new CreateKitCommand(kitManager));

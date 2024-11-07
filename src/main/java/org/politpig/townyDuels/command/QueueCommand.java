@@ -19,7 +19,6 @@ public class QueueCommand implements CommandExecutor, TabCompleter {
     private final KitManager kitManager;
     private final QueueManager queueManager;
     private final DuelManager duelManager;
-    private final Map<String, Player> queue = new HashMap<>();
 
     public QueueCommand(ArenaManager arenaManager, KitManager kitManager, QueueManager queueManager, DuelManager duelManager) {
         this.queueManager = queueManager;
@@ -42,8 +41,9 @@ public class QueueCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
+
         if (args[0].equalsIgnoreCase("leave")) {
-            queueManager.leaveQueue(player);
+            queueManager.leavecommand(player);
             return true;
         }
 
@@ -54,16 +54,16 @@ public class QueueCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        for (String kit : queue.keySet()) {
-            if (queue.get(kit) == player) {
+        for (String kit : queueManager.queue.keySet()) {
+            if (queueManager.queue.get(kit) == player) {
                 player.sendMessage("Вы уже находитесь в очереди с китом " + kit + ".");
                 return true;
             }
         }
 
-        if (queue.containsKey(kitName)) {
-            Player opponent = queue.get(kitName);
-            queue.remove(kitName);
+        if (queueManager.queue.containsKey(kitName)) {
+            Player opponent = queueManager.queue.get(kitName);
+            queueManager. queue.remove(kitName);
 
             duelManager.addPlayersToDuel(player, opponent);
 
@@ -80,7 +80,7 @@ public class QueueCommand implements CommandExecutor, TabCompleter {
                 opponent.sendMessage("Нет доступных арен.");
             }
         } else {
-            queue.put(kitName, player);
+            queueManager.queue.put(kitName, player);
             player.sendMessage("Вы добавлены в очередь с китом " + kitName + ".");
         }
 

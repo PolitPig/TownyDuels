@@ -8,10 +8,12 @@ import java.util.*;
 
 public class QueueManager {
 
-    private final Map<String, Player> queue = new HashMap<>();
+    public final Map<String, Player> queue = new HashMap<>();
     private final ArenaManager arenaManager;
     private final KitManager kitManager;
-    public QueueManager(ArenaManager arenaManager, KitManager kitManager) {
+    private final DuelManager duelManager;
+    public QueueManager(ArenaManager arenaManager, KitManager kitManager, DuelManager duelManager) {
+        this.duelManager = duelManager;
         this.arenaManager = arenaManager;
         this.kitManager = kitManager;
     }
@@ -33,9 +35,6 @@ public class QueueManager {
         player.getInventory().setItemInOffHand(kit.getOffHandItem());
     }
 
-    public boolean isPlayerInQueue(Player player) {
-        return queue.containsValue(player);
-    }
     public ArenaData getRandomAvailableArena() {
         if (arenaManager.getArenas().isEmpty()) {
             return null;
@@ -52,7 +51,21 @@ public class QueueManager {
         Random random = new Random();
         return availableArenas.get(random.nextInt(availableArenas.size()));
     }
-        public void leaveQueue(Player player) {
-        queue.remove(player.getName());
+    public void leaveQueue(Player player) {
+        queue.entrySet().removeIf(entry -> entry.getValue().equals(player));
+    }
+    public boolean isPlayerInQueue(Player player) {
+        return queue.containsValue(player);
+    }
+    public void leavecommand(Player player){
+        if (queue.containsValue(player)) {
+            queue.entrySet().removeIf(entry -> entry.getValue().equals(player));;
+            player.sendMessage("Вы были удалены из очереди.");
+        } else {
+            player.sendMessage("Вы не в очереди.");
+        }
     }
 }
+
+
+
